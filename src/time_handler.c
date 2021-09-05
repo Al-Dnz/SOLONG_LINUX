@@ -18,7 +18,7 @@ int	period_process(t_state *state)
 int	end_time(t_state *state)
 {
 	state->end_timer++;
-	if (state->end_timer > 20000)
+	if (state->end_timer > state->end_period)
 		quit(state, 0);
 	return (0);
 }

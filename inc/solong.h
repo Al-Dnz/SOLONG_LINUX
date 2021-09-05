@@ -119,6 +119,7 @@ typedef struct s_state
 
 	int		timer;
 	int		end_timer;
+	int		end_period;
 	int		sprite_period;
 	int		sprite_sens;
 
