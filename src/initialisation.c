@@ -38,9 +38,6 @@ void	set_dimension(t_state *state)
 
 void	set_game_flag(t_state *state)
 {
-	//state->win_width = 500;
-	//state->win_height = 500;
-	//state->square_size = 10;
 	state->player_dir = 'E';
 	state->player_up = 1;
 	state->player_right = 1;
@@ -49,6 +46,7 @@ void	set_game_flag(t_state *state)
 	state->step_n = 0;
 	state->timer = 0;
 	state->end_timer = 0;
+	state->end_period = 50000;
 	state->sprite_period = 10000;
 	state->sprite_sens = 0;
 	state->key_lock = 0;
