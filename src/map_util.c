@@ -47,3 +47,20 @@ void	free_map(char **arr)
 	free(arr);
 	arr = NULL;
 }
+
+void	free_map_dimension(char **arr, int height)
+{
+	int	i;
+
+	i = 0;
+	while (i <= height)
+	{
+		free(arr[i]);
+		arr[i] = NULL;
+		i++;
+	}
+	free(arr[i]);
+	arr[i] = NULL;
+	free(arr);
+	arr = NULL;
+}

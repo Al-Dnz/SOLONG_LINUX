@@ -1,6 +1,6 @@
 #include "solong.h"
 
-int	map_height(char *path)
+int	map_height_init(char *path)
 {
 	char	buffer[10000];
 	int		fd;
@@ -14,6 +14,8 @@ int	map_height(char *path)
 	byte_read = 1;
 	while (byte_read > 0)
 	{
+		if (*buffer == '\0')
+			break;
 		byte_read = read(fd, buffer, 1);
 		if (*buffer == '\n')
 			n++;
@@ -22,9 +24,38 @@ int	map_height(char *path)
 	return (n);
 }
 
+int	map_height(char *path)
+{
+	char	buffer[10000];
+	int		fd;
+	int		byte_read;
+	int		n;
+	t_bool		new_line;
+
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		return (0);
+	n = 0;
+	new_line = 1;
+	byte_read = 1;
+	while (byte_read > 0)
+	{
+		if (new_line == 1 && *buffer)
+		{
+			n++;
+			new_line = 0;
+		}
+		byte_read = read(fd, buffer, 1);
+		if (*buffer == '\n')
+			new_line = 1;
+	}
+	close(fd);
+	return (n);
+}
+
 int	map_width(char *path)
 {
-	char	buffer;
+	char	buffer[10000];
 	int		fd;
 	int		byte_read;
 	int		n;
@@ -40,7 +71,7 @@ int	map_width(char *path)
 	{
 		byte_read = read(fd, &buffer, 1);
 		n++;
-		if (buffer == '\n')
+		if (*buffer == '\n')
 		{
 			if (n > max)
 				max = n;
@@ -75,7 +106,7 @@ char	**array_generator(int width, int height)
 		arr[i][j] = 0;
 		i++;
 	}
-	arr[i] = 0;
+	arr[i] = NULL;
 	return (arr);
 }
 

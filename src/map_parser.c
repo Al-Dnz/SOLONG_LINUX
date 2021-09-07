@@ -37,7 +37,7 @@ t_bool	valid_symbol(char **map)
 		x = 0;
 		while (map[y][x])
 		{
-			if (ft_find_index("01CEFP ", map[y][x]) == -1)
+			if (ft_find_index("01CEFP", map[y][x]) == -1)
 				return (0);
 			x++;
 		}

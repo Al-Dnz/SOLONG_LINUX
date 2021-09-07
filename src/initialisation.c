@@ -2,6 +2,7 @@
 
 void	set_parse_flag(t_state *state)
 {
+	state->error = false;
 	state->map = NULL;
 	state->player_occur = false;
 	state->collectible_occur = false;
@@ -59,7 +60,6 @@ void	init_window(t_state *state)
 	set_dimension(state);
 	state->win = mlx_new_window(state->mlx, state->win_width,
 			state->win_height, "adenhez's SOLONG");
-	
 	state->img.mlx_img = mlx_new_image(state->mlx,
 			state->win_width, state->win_height);
 	state->img.addr = (int *)mlx_get_data_addr(state->img.mlx_img,

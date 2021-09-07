@@ -1,16 +1,10 @@
 #include "solong.h"
 
-int	render_graphic(t_state *state)
-{
-	draw_map(state);
-	return (1);
-}
-
 void	process(t_state *state)
 {
 	draw_map(state);
 	mlx_hook(state->win, 17, 0, quit, state);
-	mlx_hook(state->win, 2, 1L << 1, &keypress, state);
+	mlx_hook(state->win, 2, 1L << 0, &keypress, state);
 	mlx_key_hook(state->win, move_p, state);
 	mlx_loop_hook(state->mlx, &period_process, state);
 	mlx_loop(state->mlx);
@@ -32,15 +26,14 @@ int	main(int argc, char **argv)
 	fill_map(state.map, path, 0, 0);
 	map_analyzer(&state);
 	map_diagnostic(&state);
+	display_map(state.map);
 	if (map_validation(&state) == 0)
 		quit(&state, state.error);
 	else
 		ft_putstr_fd("=>OK<=\n", 1);
-	display_map(state.map);
 	printf("player : X[%d]Y[%d]\n", state.player_coord.x, state.player_coord.y);
 	set_game_flag(&state);
 	init_window(&state);
-	
 	set_main_texture(&state);
 	process(&state);
 	return (1);

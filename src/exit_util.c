@@ -34,13 +34,21 @@ int	quit(t_state *state, int error)
 	int	fd;
 
 	fd = 1;
-	mlx_destroy_image(state->mlx, state->img.mlx_img);
-	mlx_clear_window(state->mlx, state->win);
-	mlx_destroy_window(state->mlx, state->win);
+	if (state->error == false)
+	{
+		free_img(state);
+		mlx_destroy_image(state->mlx, state->img.mlx_img);
+		mlx_clear_window(state->mlx, state->win);
+		mlx_destroy_window(state->mlx, state->win);
+		mlx_destroy_display(state->mlx);
+		free(state->mlx);
+	}
 	free_map(state->map);
-	ft_strclr(&state->str_score);
+	if (state->error == false)
+		ft_strclr(&state->str_score);
 	ft_putstr_fd("EXIT\n", fd);
-	ft_putnbr_fd(state->step_n, fd);
+	if (state->error == false)
+		ft_putnbr_fd(state->step_n, fd);
 	exit(error);
 	return (error);
 }
