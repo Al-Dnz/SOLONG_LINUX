@@ -15,7 +15,7 @@ int	map_height_init(char *path)
 	while (byte_read > 0)
 	{
 		if (*buffer == '\0')
-			break;
+			break ;
 		byte_read = read(fd, buffer, 1);
 		if (*buffer == '\n')
 			n++;
@@ -30,7 +30,7 @@ int	map_height(char *path)
 	int		fd;
 	int		byte_read;
 	int		n;
-	t_bool		new_line;
+	t_bool	new_line;
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)

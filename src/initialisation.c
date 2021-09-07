@@ -17,8 +17,8 @@ void	set_parse_flag(t_state *state)
 
 void	set_dimension(t_state *state)
 {
-	int	screen_width =0 ;
-	int	screen_height = 0;
+	int	screen_width;
+	int	screen_height;
 
 	screen_width = 0;
 	screen_height = 0;

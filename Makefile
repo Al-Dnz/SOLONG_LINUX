@@ -1,4 +1,4 @@
-SRCS =	main.c \
+SRC =	main.c \
 		exit_util.c \
 		main_util.c \
 		map_error.c \
@@ -19,43 +19,67 @@ SRCS =	main.c \
 		check_case.c \
 		ending_screen.c \
 		draw_map.c \
-		 
-NAME 	=	solong
-CC		=	clang
-FLAGS	=	-O3 -Wall -Wextra -Werror
-INC		=	inc
-OBJ		=	obj
-SRC		=	src
-LIBFT	=	libft
-LIBMLX	=	libmlx
-INCS	=	$(addprefix $(INC)/, solong.h)
-OBJS	=	$(addprefix $(OBJ)/, $(SRCS:.c=.o))
 
-all: init $(NAME)
+NAME = solong
 
-init:
-		mkdir -p $(OBJ)
-		make -C $(LIBFT)
-		make -C $(LIBMLX)
+UNAME := $(shell uname)
+ifeq ($(UNAME), Darwin)
+	OS_NAME = MAC_OS
+	LIBMLX	=	mlx_mac
+else
+	LIBMLX	=	mlx_linux
+	OS_NAME = LINUX
+endif
 
-$(NAME): $(OBJS) $(INCS)
-		$(CC) $(FLAGS) -I$(INC) -o $(NAME) $(OBJS) -Llibft -lft -Llibmlx -lmlx -lX11 -lbsd -lm -lXext
-		@echo "\n------------------------------"
-		@echo "| => $(NAME) well created ! <= |"
-		@echo "------------------------------\n"
+MLX = libmlx.dylib
+CC = gcc
+LIB = ./libft/libft.a
 
-$(OBJ)/%.o: $(SRC)/%.c $(INCS)
-		$(CC) $(FLAGS) -I$(INC) -c $< -o $@
+CFLAGS = -Wall -Wextra -Werror
+
+OBJ_DIR = obj
+SRC_DIR = src
+INC_DIR = inc
+
+OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
+DPD = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.d))
+
+#.c.o:
+#	${CC} ${CFLAGS} -c$< -o ${<:.c=.o}
+
+all:
+	@mkdir -p $(OBJ_DIR)
+	@(make -C ./libft/)
+	@(make -C $(LIBMLX))
+	@$(MAKE) -j $(NAME)
+
+$(NAME): $(OBJ)
+ifeq ($(UNAME), Darwin)
+	${CC} $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) -I $(INC_DIR) -L $(LIBMLX) -l mlx
+	@install_name_tool -change $(MLX) @loader_path/$(LIBMLX)/$(MLX) $(NAME)
+else
+	$(CC) $(CFLAGS) -L$(LIBFT) $(OBJ) -I$(INC) -L $(LIBMLX) -lmlx -lft -lX11 -lbsd -lm -lXext -o $(NAME)
+endif
+	@echo "\n------------------------------"
+	@echo "| => $(NAME) well created ! <= |"
+	@echo "------------------------------\n"
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c #$(LIBMLX)/$(MLX) | .gitignore
+	${CC} $(CFLAGS) -I $(INC_DIR) -I $(LIBMLX) -c $< -o $@
 
 clean:
-		rm -rf $(OBJ)
-		make -C $(LIBFT) clean
-		make -C $(LIBMLX) clean
-		@echo "obj deleted"
+	@rm -rf $(OBJ_DIR)
+	@(make clean -C ./libft/)
+	@(make clean -C $(LIBMLX))
+	@echo "obj deleted"
 
-fclean: clean
-		rm -rf $(NAME)
-		make -C $(LIBFT) fclean
-		@echo "\n=> [$(NAME)]: deleted <=\n"
+fclean:	clean
+	@rm -rf $(NAME)
+	@(make fclean -C ./libft/)
+	@echo "\n=> [$(NAME)]: deleted <=\n"
 
 re: fclean all
+
+.PHONY: all, clean, fclean, re
+
+-include $(DPD)
