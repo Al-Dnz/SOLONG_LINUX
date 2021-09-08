@@ -1,4 +1,4 @@
-SRC =	main.c \
+SRCS =	main.c \
 		exit_util.c \
 		main_util.c \
 		map_error.c \
@@ -24,25 +24,25 @@ NAME = solong
 
 UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
-	OS_NAME = MAC_OS
-	LIBMLX	=	mlx_mac
+OS_NAME = MAC_OS
+LIBMLX	= mlx_mac
 else
-	LIBMLX	=	mlx_linux
-	OS_NAME = LINUX
+LIBMLX	= mlx_linux
+OS_NAME = LINUX
 endif
 
 MLX = libmlx.dylib
 CC = gcc
-LIB = ./libft/libft.a
-
+LIB = libft/libft.a
+LIBFT = libft
 CFLAGS = -Wall -Wextra -Werror
 
 OBJ_DIR = obj
 SRC_DIR = src
 INC_DIR = inc
 
-OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
-DPD = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.d))
+OBJ = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
+DPD = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.d))
 
 #.c.o:
 #	${CC} ${CFLAGS} -c$< -o ${<:.c=.o}
@@ -51,21 +51,21 @@ all:
 	@mkdir -p $(OBJ_DIR)
 	@(make -C ./libft/)
 	@(make -C $(LIBMLX))
-	@$(MAKE) -j $(NAME)
+	@(make -j $(NAME))
 
 $(NAME): $(OBJ)
 ifeq ($(UNAME), Darwin)
-	${CC} $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) -I $(INC_DIR) -L $(LIBMLX) -l mlx
+	${CC} $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) -I $(INC_DIR) -L $(LIBMLX) -I$(LIBMLX) -l mlx 
 	@install_name_tool -change $(MLX) @loader_path/$(LIBMLX)/$(MLX) $(NAME)
 else
-	$(CC) $(CFLAGS) -L$(LIBFT) $(OBJ) -I$(INC) -L $(LIBMLX) -lmlx -lft -lX11 -lbsd -lm -lXext -o $(NAME)
+	$(CC) -no-pie $(CFLAGS) $(OBJ) $(LIB) -I$(INC_DIR) -L$(LIBMLX) -I$(LIBMLX) -lmlx -lX11 -lbsd -lm -lXext -o $(NAME)
 endif
 	@echo "\n------------------------------"
 	@echo "| => $(NAME) well created ! <= |"
 	@echo "------------------------------\n"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c #$(LIBMLX)/$(MLX) | .gitignore
-	${CC} $(CFLAGS) -I $(INC_DIR) -I $(LIBMLX) -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_DIR) #$(LIBMLX)/$(MLX) | .gitignore
+	${CC} $(CFLAGS) -D$(OS_NAME) -I$(INC_DIR) -I$(LIBMLX) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ_DIR)
@@ -81,5 +81,3 @@ fclean:	clean
 re: fclean all
 
 .PHONY: all, clean, fclean, re
-
--include $(DPD)

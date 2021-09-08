@@ -15,7 +15,7 @@
 
 # define PI 3.14159265359
 
-#ifdef LINUX
+#ifndef MAC_OS
 # define EXIT		65307
 # define FORW_2		65362
 # define BACK_2		65364
