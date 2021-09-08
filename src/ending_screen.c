@@ -11,6 +11,8 @@ void	ending_screen(t_state *state, t_img img, int x, int y)
 	score_displayer(state);
 	size = ft_min(state->win_height, state->win_width);
 	ratio = img.width / size;
+	if (ratio < 1)
+		ratio = 1;
 	x = (state->win_width - (img.width / ratio)) / 2;
 	y = (state->win_height - (img.height / ratio)) / 2;
 	j = -1;

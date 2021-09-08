@@ -7,12 +7,11 @@ void	set_parse_flag(t_state *state)
 	state->player_occur = false;
 	state->collectible_occur = false;
 	state->exit_occur = false;
-	state->foe_occur = false;
 	state->closed_map = false;
 	state->rectangular_map = false;
 	state->player_coord = (t_pos){0, 0};
 	state->exit_coord = (t_pos){0, 0};
-	state->foe_coord = (t_pos){-1, -1};
+	state->foe_coord = (t_pos){0, 0};
 }
 
 void	set_dimension(t_state *state)

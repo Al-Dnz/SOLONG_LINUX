@@ -105,6 +105,7 @@ typedef struct s_state
 	t_bool	player_occur;
 	t_bool	collectible_occur;
 	t_bool	exit_occur;
+	t_bool	foe_error;
 	t_bool	foe_occur;
 	t_bool	closed_map;
 	t_bool	rectangular_map;
@@ -147,6 +148,8 @@ t_bool	valid_symbol(char **map);
 t_bool	symbol_occurence(char **map, char symbol, int unique);
 int		rectangular_map(char **map);
 void	player_coord(t_state *state);
+
+int		count_symbol(char **map, char symbol);
 
 void	display_map(char **arr);
 void	free_map(char **arr);

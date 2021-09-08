@@ -5,6 +5,7 @@ SRCS =	main.c \
 		map_util.c \
 		map_array_generator.c \
 		map_parser.c \
+		map_parser_2.c \
 		graphic_engine.c \
 		draw_util.c \
 		key_handler.c \

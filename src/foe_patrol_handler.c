@@ -30,20 +30,22 @@ void	foe_patrol(t_state *state)
 	int			x;
 	int			y;
 
+	if (!state->foe_occur)
+		return ;
 	x = state->foe_coord.x;
 	y = state->foe_coord.y;
 	if (sens == 1 && state->map[y][x + 1])
 	{
 		if (state->map[y][x + 1] == 'x')
 			state->foe_coord.x += 1;
-		else if (state->map[y][x + 1] == '1')
+		else if (ft_find_index("1ecf", state->map[y][x + 1]) != -1)
 			sens = 0;
 	}
 	if (sens == 0 && state->map[y][x - 1])
 	{
 		if (state->map[y][x - 1] == 'x')
 			state->foe_coord.x -= 1;
-		else if (state->map[y][x - 1] == '1')
+		else if (ft_find_index("1ecf", state->map[y][x - 1]) != -1)
 			sens = 1;
 	}
 }

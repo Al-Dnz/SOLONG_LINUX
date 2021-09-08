@@ -14,7 +14,7 @@ void	special_checking(t_state *state)
 		state->score++;
 		update_str_score(state);
 	}
-	if (state->map[y][x] == 'e'
+	if ((state->map[y][x] == 'e' && !symbol_occurence(state->map, 'c', 0))
 			|| (x == state->foe_coord.x && y == state->foe_coord.y))
 	{
 		state->key_lock = 1;

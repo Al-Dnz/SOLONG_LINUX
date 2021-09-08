@@ -8,7 +8,8 @@ int	period_process(t_state *state)
 	if (!state->end_timer
 		&& (state->timer == state->sprite_period / 2 || state->timer == 0))
 	{
-		foe_patrol(state);
+		if (state->foe_occur)
+			foe_patrol(state);
 		draw_map(state);
 		special_checking(state);
 	}

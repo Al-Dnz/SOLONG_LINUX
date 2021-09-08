@@ -17,8 +17,9 @@ void	fill_img_arr(t_state *state, t_img *img_arr)
 
 void	render_dynamic_obj(t_state *state)
 {
-	render_square_pic_evolved(state, state->foe, adj(state->foe_coord.x, state),
-		adj(state->foe_coord.y, state));
+	if (state->foe_occur)
+		render_square_pic_evolved(state, state->foe,
+			adj(state->foe_coord.x, state), adj(state->foe_coord.y, state));
 	render_square_pic_rotation(state, state->player,
 		adj(state->player_coord.x, state), adj(state->player_coord.y, state));
 	score_displayer(state);
