@@ -70,7 +70,8 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_DIR) #$(LIBMLX)/$(MLX) | .gitignore
 clean:
 	@rm -rf $(OBJ_DIR)
 	@(make clean -C ./libft/)
-	@(make clean -C $(LIBMLX))
+	@(make clean -C ./mlx_mac)
+	@(make clean -C ./mlx_linux)
 	@echo "obj deleted"
 
 fclean:	clean
