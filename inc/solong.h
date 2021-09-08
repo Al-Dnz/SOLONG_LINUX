@@ -9,38 +9,34 @@
 # include <math.h>
 # include "../libft/libft.h"
 # include <stdio.h>
-
 # include <mlx.h>
-
 
 # define PI 3.14159265359
 
-#ifndef MAC_OS
-# define EXIT		65307
-# define FORW_2		65362
-# define BACK_2		65364
-# define LEFT_2		65367
-# define RIGHT_2	65363
-# define FORWARD	119
-# define BACK		115
-# define RIGHT		100
-# define LEFT		97
-#else
-# define EXIT		53
-# define FORW_2		126
-# define BACK_2		125
-# define LEFT_2		123
-# define RIGHT_2	124
-# define FORWARD	13
-# define BACK		1
-# define RIGHT		2
-# define LEFT		0
-#endif
+# ifndef MAC_OS
+#  define EXIT		65307
+#  define FORW_2		65362
+#  define BACK_2		65364
+#  define LEFT_2		65367
+#  define RIGHT_2	65363
+#  define FORWARD	119
+#  define BACK		115
+#  define RIGHT		100
+#  define LEFT		97
+# else
+#  define EXIT		53
+#  define FORW_2		126
+#  define BACK_2		125
+#  define LEFT_2		123
+#  define RIGHT_2	124
+#  define FORWARD	13
+#  define BACK		1
+#  define RIGHT		2
+#  define LEFT		0
+# endif
 
 # define MAP_MARGIN 10
 # define GRID_UNIT_SIZE 15
-
-# define HUD_HEIGHT 300
 
 # define BLACK  0x000000
 # define WHITE  0xFFFFFF

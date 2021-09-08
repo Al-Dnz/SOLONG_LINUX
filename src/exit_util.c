@@ -48,8 +48,6 @@ int	quit(t_state *state, int error)
 	if (state->error == false)
 		ft_strclr(&state->str_score);
 	ft_putstr_fd("EXIT\n", fd);
-	if (state->error == false)
-		ft_putnbr_fd(state->step_n, fd);
 	exit(error);
 	return (error);
 }
@@ -74,8 +72,6 @@ int	quit(t_state *state, int error)
 	if (state->error == false)
 		ft_strclr(&state->str_score);
 	ft_putstr_fd("EXIT\n", fd);
-	if (state->error == false)
-		ft_putnbr_fd(state->step_n, fd);
 	exit(error);
 	return (error);
 }

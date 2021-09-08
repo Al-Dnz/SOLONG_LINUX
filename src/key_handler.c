@@ -2,7 +2,6 @@
 
 int	keypress(int keycode, t_state *state)
 {
-	printf("PRESSS %d\n", keycode);
 	if (keycode == EXIT)
 		quit(state, 0);
 	return (1);
@@ -10,7 +9,6 @@ int	keypress(int keycode, t_state *state)
 
 int	keyrelease(int keycode, t_state *state)
 {
-	printf("RELEASE %d\n", keycode);
 	if (keycode == FORWARD || keycode == 126)
 		state->key.forward = false;
 	else if (keycode == BACK || keycode == 125)

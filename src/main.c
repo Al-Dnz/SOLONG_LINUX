@@ -20,18 +20,12 @@ int	main(int argc, char **argv)
 	arg_error(argc, argv);
 	state.map_width = map_width(path);
 	state.map_height = map_height(path);
-	printf("MAP : width = [%d] height = [%d]\n",
-		state.map_width, state.map_height);
 	state.map = array_generator(state.map_width, state.map_height);
 	fill_map(state.map, path, 0, 0);
 	map_analyzer(&state);
 	map_diagnostic(&state);
-	display_map(state.map);
 	if (map_validation(&state) == 0)
 		quit(&state, state.error);
-	else
-		ft_putstr_fd("=>OK<=\n", 1);
-	printf("player : X[%d]Y[%d]\n", state.player_coord.x, state.player_coord.y);
 	set_game_flag(&state);
 	init_window(&state);
 	set_main_texture(&state);

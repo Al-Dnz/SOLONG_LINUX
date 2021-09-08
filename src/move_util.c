@@ -7,6 +7,8 @@ void	case_1(t_state *state, int *x, int *y, int delta)
 	{
 		*y += delta ;
 		state->step_n++;
+		ft_putnbr_fd(state->step_n, 1);
+		ft_putstr_fd("\n", 1);
 	}	
 }
 
@@ -17,6 +19,8 @@ void	case_2(t_state *state, int *x, int *y, int delta)
 	{
 		*x += delta;
 		state->step_n++;
+		ft_putnbr_fd(state->step_n, 1);
+		ft_putstr_fd("\n", 1);
 	}
 }
 
