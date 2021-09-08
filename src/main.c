@@ -23,8 +23,9 @@ int	main(int argc, char **argv)
 	state.map = array_generator(state.map_width, state.map_height);
 	fill_map(state.map, path, 0, 0);
 	map_analyzer(&state);
+	map_validation(&state);
 	map_diagnostic(&state);
-	if (map_validation(&state) == 0)
+	if (state.error)
 		quit(&state, state.error);
 	set_game_flag(&state);
 	init_window(&state);
