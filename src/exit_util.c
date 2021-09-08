@@ -29,7 +29,7 @@ void	free_img(t_state *state)
 		mlx_destroy_image(state->mlx, state->gameover_screen.mlx_img);
 }
 
-#ifndef MAC_OS
+#ifdef MAC_OS
 
 int	quit(t_state *state, int error)
 {
