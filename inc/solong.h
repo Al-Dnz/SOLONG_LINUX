@@ -153,7 +153,7 @@ int		count_symbol(char **map, char symbol);
 
 void	display_map(char **arr);
 void	free_map(char **arr);
-void	free_map_dimension(char **arr, int height);
+void	change_rest_of_map_symbol(char **map);
 
 void	map_analyzer(t_state *state);
 void	map_diagnostic(t_state *state);

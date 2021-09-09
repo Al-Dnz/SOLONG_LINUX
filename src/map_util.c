@@ -6,7 +6,7 @@
 /*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 19:22:34 by adenhez           #+#    #+#             */
-/*   Updated: 2021/06/21 15:44:24 by adenhez          ###   ########.fr       */
+/*   Updated: 2021/09/09 10:49:31 by adenhez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,23 @@ void	free_map(char **arr)
 	arr = NULL;
 }
 
-void	free_map_dimension(char **arr, int height)
+void	change_rest_of_map_symbol(char **map)
 {
-	int	i;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (i <= height)
+	y = 0;
+	while (map[y])
 	{
-		free(arr[i]);
-		arr[i] = NULL;
-		i++;
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == '0')
+				map[y][x] = 'x';
+			if (map[y][x] == 'F')
+				map[y][x] = 'f';
+			x++;
+		}
+		y++;
 	}
-	free(arr[i]);
-	arr[i] = NULL;
-	free(arr);
-	arr = NULL;
 }

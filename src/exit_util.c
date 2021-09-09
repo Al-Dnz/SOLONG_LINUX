@@ -71,7 +71,6 @@ int	quit(t_state *state, int error)
 	free_map(state->map);
 	if (state->error == false)
 		ft_strclr(&state->str_score);
-	ft_putstr_fd("EXIT\n", fd);
 	exit(error);
 	return (error);
 }

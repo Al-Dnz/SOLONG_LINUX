@@ -5,7 +5,7 @@ void	map_analyzer(t_state *state)
 	state->error = false;
 	state->valid_symbol = valid_symbol(state->map);
 	state->player_occur = symbol_occurence(state->map, 'P', 1);
-	state->exit_occur = symbol_occurence(state->map, 'E', 1);
+	state->exit_occur = symbol_occurence(state->map, 'E', 0);
 	state->collectible_occur = symbol_occurence(state->map, 'C', 0);
 	state->foe_occur = symbol_occurence(state->map, 'F', 1);
 	state->foe_error = false;
@@ -16,6 +16,8 @@ void	map_analyzer(t_state *state)
 	player_coord(state);
 	if (state->map_height > 2 && state->map_width > 2 && state->player_occur)
 		map_floodfill(state, state->player_coord.x, state->player_coord.y);
+	if (state->closed_map == true)
+		change_rest_of_map_symbol(state->map);
 }
 
 void	map_diagnostic(t_state *state)
