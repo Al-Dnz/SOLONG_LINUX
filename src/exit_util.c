@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit_util.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/10 12:01:20 by adenhez           #+#    #+#             */
+/*   Updated: 2021/09/10 12:01:20 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "solong.h"
 
 void	free_img(t_state *state)
@@ -47,7 +59,6 @@ int	quit(t_state *state, int error)
 	free_map(state->map);
 	if (state->error == false)
 		ft_strclr(&state->str_score);
-	ft_putstr_fd("EXIT\n", fd);
 	exit(error);
 	return (error);
 }

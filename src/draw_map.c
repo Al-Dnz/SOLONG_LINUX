@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/10 11:36:58 by adenhez           #+#    #+#             */
+/*   Updated: 2021/09/10 11:36:59 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "solong.h"
 
 int	adj(int pos, t_state *state)
@@ -19,7 +31,8 @@ void	render_dynamic_obj(t_state *state)
 {
 	if (state->foe_occur)
 		render_square_pic_evolved(state, state->foe,
-			adj(state->foe_coord.x, state), adj(state->foe_coord.y, state));
+			adj(state->foe_coord.x, state) - ((state->foe.width * 3) / 100),
+			adj(state->foe_coord.y, state));
 	render_square_pic_rotation(state, state->player,
 		adj(state->player_coord.x, state), adj(state->player_coord.y, state));
 	score_displayer(state);

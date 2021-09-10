@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   img_initialisation.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/10 11:37:24 by adenhez           #+#    #+#             */
+/*   Updated: 2021/09/10 11:37:24 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "solong.h"
 
 void	set_main_texture_1(t_state *state)
@@ -40,7 +52,7 @@ void	set_main_texture_2(t_state *state)
 void	set_main_texture_3(t_state *state)
 {
 	state->foe.mlx_img = mlx_xpm_file_to_image(state->mlx,
-			"./textures/fox.xpm", &(state->foe.width),
+			"./textures/fox_1.xpm", &(state->foe.width),
 			&(state->foe.height));
 	state->foe.addr = (int *)mlx_get_data_addr(state->foe.mlx_img,
 			&(state->foe.bpp), &(state->foe.line_len), &(state->foe.endian));

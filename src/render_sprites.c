@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_sprites.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/10 11:38:15 by adenhez           #+#    #+#             */
+/*   Updated: 2021/09/10 11:38:15 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "solong.h"
 
 int	img_period_adjusted(t_state *state, int i, int size)
@@ -23,7 +35,7 @@ void	render_animated_sprite(t_state *state, t_img img, int x, int y)
 		while (++i < size)
 		{
 			if (img.addr[j * img.line_len / 4 + i] > 0)
-				state->img.addr[(y + j / ratio) *state->img.line_len
+				state->img.addr[(y + j / ratio) * state->img.line_len
 					/ 4 + (x + img_period_adjusted(state, i, size) / ratio)]
 					= img.addr[j * img.line_len / 4 + i];
 		}

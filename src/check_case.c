@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_case.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/10 11:36:53 by adenhez           #+#    #+#             */
+/*   Updated: 2021/09/10 11:36:55 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "solong.h"
 
 void	special_checking(t_state *state)
@@ -12,7 +24,6 @@ void	special_checking(t_state *state)
 		state->map[y][x] = 'x';
 		draw_map(state);
 		state->score++;
-		update_str_score(state);
 	}
 	if ((state->map[y][x] == 'e' && !symbol_occurence(state->map, 'c', 0))
 			|| (x == state->foe_coord.x && y == state->foe_coord.y))

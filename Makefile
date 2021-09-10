@@ -21,7 +21,7 @@ SRCS =	main.c \
 		ending_screen.c \
 		draw_map.c \
 
-NAME = solong
+NAME = so_long
 
 UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)

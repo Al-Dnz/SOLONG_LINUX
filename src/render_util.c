@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_util.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/10 11:38:22 by adenhez           #+#    #+#             */
+/*   Updated: 2021/09/10 11:38:23 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "solong.h"
 
 void	render_square_pic(t_state *state, t_img img, int x, int y)
@@ -14,7 +26,7 @@ void	render_square_pic(t_state *state, t_img img, int x, int y)
 	{
 		i = -1;
 		while (++i < size)
-			state->img.addr[(y + j / ratio) *state->img.line_len
+			state->img.addr[(y + j / ratio) * state->img.line_len
 				/ 4 + (x + i / ratio)] = img.addr[j * img.line_len / 4 + i];
 	}
 }
@@ -35,7 +47,7 @@ void	render_square_pic_evolved(t_state *state, t_img img, int x, int y)
 		while (++i < size)
 		{
 			if (img.addr[j * img.line_len / 4 + i] > 0)
-				state->img.addr[(y + (j / ratio)) *state->img.line_len / 4
+				state->img.addr[(y + (j / ratio)) * state->img.line_len / 4
 					+ (x + (i / ratio))] = img.addr[j * img.line_len / 4 + i];
 		}
 	}
@@ -57,7 +69,7 @@ void	render_square_sprite(t_state *state, t_img img, int x, int y)
 		while (++i < size)
 		{
 			if (img.addr[j * img.line_len / 4 + i] > 0)
-				state->img.addr[(y + j / ratio) *state->img.line_len
+				state->img.addr[(y + j / ratio) * state->img.line_len
 					/ 4 + (x + i / ratio)] = img.addr[j * img.line_len / 4 + i];
 		}
 	}
@@ -108,7 +120,7 @@ void	render_square_pic_rotation(t_state *state, t_img img, int x, int y)
 		{
 			if (img.addr[j * img.line_len / 4 + i] > 0)
 				state->img.addr[(y + img_coord_adjusted(state, (t_pos){i, j},
-							size, 'j') / ratio) *state->img.line_len / 4
+							size, 'j') / ratio) * state->img.line_len / 4
 					+ (x + img_coord_adjusted(state, (t_pos){i, j}, size, 'i')
 						/ ratio)] = img.addr[j * img.line_len / 4 + i];
 		}

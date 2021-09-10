@@ -1,9 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   score_displayer.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/10 11:38:27 by adenhez           #+#    #+#             */
+/*   Updated: 2021/09/10 11:38:27 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "solong.h"
 
 void	update_str_score(t_state *state)
 {
 	ft_strclr(&state->str_score);
-	state->str_score = ft_itoa(state->score);
+	if (state->step_n > 999)
+		state->step_n = 999;
+	state->str_score = ft_itoa(state->step_n);
 }
 
 void	set_number_img(t_state *state)

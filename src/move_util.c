@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_util.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adenhez <adenhez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/10 11:38:11 by adenhez           #+#    #+#             */
+/*   Updated: 2021/09/10 11:38:11 by adenhez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "solong.h"
 
 void	case_1(t_state *state, int *x, int *y, int delta)
@@ -7,6 +19,7 @@ void	case_1(t_state *state, int *x, int *y, int delta)
 	{
 		*y += delta ;
 		state->step_n++;
+		update_str_score(state);
 		ft_putnbr_fd(state->step_n, 1);
 		ft_putstr_fd("\n", 1);
 	}	
@@ -19,6 +32,7 @@ void	case_2(t_state *state, int *x, int *y, int delta)
 	{
 		*x += delta;
 		state->step_n++;
+		update_str_score(state);
 		ft_putnbr_fd(state->step_n, 1);
 		ft_putstr_fd("\n", 1);
 	}
